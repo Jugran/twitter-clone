@@ -6,7 +6,7 @@
             class="flex justify-between items-center border-b px-4 py-3 sticky top-0 bg-white dark:bg-dim-900 border-l border-r border-gray-200 dark:border-gray-700"
           >
             <!-- Title -->
-            <h2 class="text-gray-800 dark:text-gray-100 font-bold font-sm">
+            <h2 class=" dark:text-gray-100 font-bold font-sm">
               Home
             </h2>
             <!-- /Title -->
@@ -156,7 +156,7 @@
                   </div>
                   <div class="ml-3">
                     <p
-                      class="flex items-center text-base leading-6 font-medium text-gray-800 dark:text-white"
+                      class="flex items-center text-base leading-6 font-medium  dark:text-white"
                     >
                       Joe Biden
                       <svg
@@ -183,7 +183,7 @@
             </div>
             <div class="pl-16">
               <p
-                class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink"
+                class="text-base width-auto font-medium  dark:text-white flex-shrink"
               >
                 America, I’m honored that you have chosen me to lead our great
                 country.<br />
@@ -208,7 +208,7 @@
                 <div class="w-full">
                   <div class="flex items-center">
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -224,7 +224,7 @@
                       12.3 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -240,7 +240,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -256,7 +256,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -341,7 +341,7 @@
                   </div>
                   <div class="ml-3">
                     <p
-                      class="flex items-center text-base leading-6 font-medium text-gray-800 dark:text-white"
+                      class="flex items-center text-base leading-6 font-medium  dark:text-white"
                     >
                       Joe Biden
                       <svg
@@ -368,7 +368,7 @@
             </div>
             <div class="pl-16">
               <p
-                class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink"
+                class="text-base width-auto font-medium  dark:text-white flex-shrink"
               >
                 America, I’m honored that you have chosen me to lead our great
                 country.<br />
@@ -392,7 +392,7 @@
                 <div class="w-full">
                   <div class="flex items-center">
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -408,7 +408,7 @@
                       12.3 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -424,7 +424,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -440,7 +440,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center  dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"

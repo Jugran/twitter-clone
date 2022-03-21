@@ -25,7 +25,7 @@
                   </div>
                   <div class="ml-3">
                     <p
-                      class="flex items-center text-base leading-6 font-medium text-gray-800 dark:text-white"
+                      class="flex items-center text-base leading-6 font-medium dark:text-white"
                     >
                       Presidential Transition
                       <svg
@@ -52,7 +52,7 @@
             </div>
             <div class="pl-16">
               <p
-                class="text-base width-auto font-medium text-gray-800 dark:text-white flex-shrink mb-6"
+                class="text-base width-auto font-medium dark:text-white flex-shrink mb-6"
               >
                 Under the Biden-Harris administration, American national
                 security and foreign policy will be led by experienced
@@ -64,7 +64,7 @@
                 <div class="w-full">
                   <div class="flex items-center">
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -80,7 +80,7 @@
                       12.3 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center dark:text-white text-xs text-gray-400 hover:text-green-400 dark:hover:text-green-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -96,7 +96,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center dark:text-white text-xs text-gray-400 hover:text-red-600 dark:hover:text-red-600 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -112,7 +112,7 @@
                       14 k
                     </div>
                     <div
-                      class="flex-1 flex items-center text-gray-800 dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
+                      class="flex-1 flex items-center dark:text-white text-xs text-gray-400 hover:text-blue-400 dark:hover:text-blue-400 transition duration-350 ease-in-out"
                     >
                       <svg
                         viewBox="0 0 24 24"
