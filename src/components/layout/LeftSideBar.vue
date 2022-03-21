@@ -130,7 +130,3 @@ export default {
     name: 'LeftNavBar'
 }
 </script>
-
-<style>
-
-</style>
