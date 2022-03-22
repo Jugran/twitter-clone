@@ -17,7 +17,16 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   mounted() {
-    document.documentElement.classList.add("dark");
+    // if (
+    //   localStorage.getItem('color-theme') === 'dark' ||
+    //   (!('color-theme' in localStorage) &&
+    //     window.matchMedia('(prefers-color-scheme: dark)').matches)
+    // ) {
+    //   document.documentElement.classList.add('dark');
+    // } else {
+    //   document.documentElement.classList.remove('dark');
+    // }
+    document.documentElement.classList.add('dark');
   },
   destroyed() {
     document.documentElement.classList.remove("dark");

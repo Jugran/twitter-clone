@@ -15,7 +15,7 @@
 
 <script>
 import LeftNavBar from "./layout/LeftSideBar.vue";
-import FeedSection from "./layout/FeedSection.vue";
+import FeedSection from "./feed/FeedSection.vue";
 import RightNavBar from "./layout/RightSideBar.vue";
 
 export default {
