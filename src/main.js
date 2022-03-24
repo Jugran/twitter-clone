@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import './styles/main.css'
 
+import { store } from './store/store'
+import Router from './router'
+
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faHouse, faHashtag, faBars, faPen,
@@ -27,6 +31,8 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  router: Router,
+  store: store,
   mounted() {
     // if (
     //   localStorage.getItem('color-theme') === 'dark' ||

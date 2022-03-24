@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import LeftNavBar from "./layout/LeftSideBar.vue";
-import FeedSection from "./feed/FeedSection.vue";
-import RightNavBar from "./layout/RightSideBar.vue";
+import LeftNavBar from "../components/layout/LeftSideBar.vue";
+import FeedSection from "../components/feed/FeedSection.vue";
+import RightNavBar from "../components/layout/RightSideBar.vue";
 
 export default {
   name: "HomePage",
