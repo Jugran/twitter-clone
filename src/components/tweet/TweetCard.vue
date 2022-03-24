@@ -5,7 +5,6 @@
       dark:border-dim-200
       hover:bg-gray-100
       dark:hover:bg-dim-300
-      cursor-pointer
       transition
       duration-350
       ease-in-out
@@ -60,6 +59,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

@@ -54,21 +54,18 @@
         required
         v-model="confirmPassword"
       />
-      <button
-        class="
-          w-full
-          p-2
-          bg-gray-50
-          rounded-full
-          font-bold
-          text-gray-900
-          border border-gray-700
-        "
-        name="submit"
-        @click="handleSubmit"
-      >
-        Submit
-      </button>
+      <div class="w-full bg-gray-50 rounded-full border border-gray-700">
+        <button
+          class="w-full p-2 bg-gray-50 rounded-full font-bold text-gray-900"
+          name="submit"
+          @click="handleSubmit"
+          v-if="!loading"
+        >
+          Submit
+        </button>
+
+        <load-spinner v-else />
+      </div>
 
       <p>
         Already have an account?
@@ -82,32 +79,39 @@
 
 <script>
 import router from "@/router";
-
+import LoadSpinner from '../elements/LoadSpinner.vue';
+import { wait } from "@/helpers/wait";
 
 export default {
   name: "SignupCard",
+  components: { LoadSpinner },
   data() {
     return {
       username: "",
       password: "",
       confirmPassword: "",
+      loading: false
     };
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
+      this.loading = true;
       console.log("submit", this.username, this.password, this.confirmPassword);
+
+      await wait(1000);
 
       if (this.password !== this.confirmPassword) {
         alert("Passwords do not match");
         this.confirmPassword = "";
-      } 
-      else {
+      } else {
+        this.loading = false;
         router.push({
           name: "login",
         });
       }
-    },
-  },
+
+    }
+  }
 };
 </script>
 

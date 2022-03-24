@@ -21,7 +21,6 @@
       <h2 class="dark:text-gray-100 font-bold font-sm">Home</h2>
       <!-- /Title -->
     </div>
-    <!-- /Header -->
 
     <!-- Post Tweet -->
     <new-post userProfile="zebra" />
@@ -37,37 +36,13 @@
         flex
         items-center
         justify-center
-        p-4
+        p-1
         border-b border-l border-r border-gray-200
         dark:border-gray-700
       "
     >
-      <svg class="w-8 h-8 animate-spin-fast">
-        <circle
-          cx="16"
-          cy="16"
-          fill="none"
-          r="14"
-          stroke-width="4"
-          style="stroke: rgb(29, 161, 242); opacity: 0.2"
-        ></circle>
-        <circle
-          cx="16"
-          cy="16"
-          fill="none"
-          r="14"
-          stroke-width="4"
-          style="
-            stroke: rgb(29, 161, 242);
-            stroke-dasharray: 80;
-            stroke-dashoffset: 60;
-          "
-        ></circle>
-      </svg>
+      <load-spinner v-show="loading" size="8" />
     </div>
-    <!-- /Spinner -->
-
-    <!-- /Timeline -->
   </div>
 </template>
 
@@ -77,12 +52,14 @@ import TweetCard from "../tweet/TweetCard.vue";
 
 import { fetchFeed } from "../../services/feedService";
 import { wait } from "../../helpers/wait";
+import LoadSpinner from "../elements/LoadSpinner.vue";
 
 export default {
   name: "FeedSection",
   components: {
     NewPost,
     TweetCard,
+    LoadSpinner,
   },
   data() {
     return {
@@ -96,7 +73,7 @@ export default {
       await wait(2000);
       this.loading = true;
       this.tweets = fetchFeed().data;
-      console.log("🚀 ~ tweets",  this.tweets)
+      console.log("🚀 ~ tweets", this.tweets);
       this.loading = false;
       // this.$http.get('/api/tweets').then(response => {
       //     this.tweets = response.data;

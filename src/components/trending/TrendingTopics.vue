@@ -24,44 +24,14 @@
     <div
       v-show="loading"
       class="
-        flex
-        items-center
-        justify-center
         text-blue-400 text-sm
-        font-normal
-        p-3
-        border-b border-gray-200
-        dark:border-dim-200
+        border-b
+        border-gray-200 dark:border-dim-200
         hover:bg-gray-100
         dark:hover:bg-dim-300
-        cursor-pointer
-        transition
-        duration-350
-        ease-in-out
       "
     >
-      <svg class="w-6 h-6 animate-spin-fast">
-        <circle
-          cx="12"
-          cy="12"
-          fill="none"
-          r="8"
-          stroke-width="4"
-          style="stroke: rgb(29, 161, 242); opacity: 0.2"
-        ></circle>
-        <circle
-          cx="12"
-          cy="12"
-          fill="none"
-          r="8"
-          stroke-width="4"
-          style="
-            stroke: rgb(29, 161, 242);
-            stroke-dasharray: 80;
-            stroke-dashoffset: 60;
-          "
-        ></circle>
-      </svg>
+      <load-spinner />
     </div>
 
     <div
@@ -86,6 +56,7 @@
 import { fetchTrending } from "../../services/trendingService";
 import TrendItem from "./TrendItem.vue";
 import { wait } from "../../helpers/wait";
+import LoadSpinner from "../elements/LoadSpinner.vue";
 
 export default {
   data() {
@@ -96,6 +67,7 @@ export default {
   },
   components: {
     TrendItem,
+    LoadSpinner,
   },
   methods: {
     async fetchTrends() {

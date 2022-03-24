@@ -46,46 +46,57 @@
         required
         v-model="password"
       />
-      <button
-        class="
-          w-full
-          p-2
-          bg-gray-50
-          rounded-full
-          font-bold
-          text-gray-900
-          border border-gray-700
-        "
-        name="submit"
-        @click="handleSubmit"
-      >Submit</button>
+
+      <div class="w-full bg-gray-50 rounded-full border border-gray-700">
+        <button
+          class="w-full bg-gray-50 p-2 rounded-full font-bold text-gray-900"
+          name="submit"
+          @click="handleSubmit"
+          v-if="!loading"
+        >
+          Submit
+        </button>
+
+        <load-spinner v-else />
+      </div>
 
       <p>
         Don't have an account?
-         <router-link to="/signup" exact class="font-semibold text-sky-700" >Sign up</router-link>
+        <router-link to="/signup" exact class="font-semibold text-sky-700"
+          >Sign up</router-link
+        >
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import router from '@/router';
+import router from "@/router";
+import { wait } from "@/helpers/wait";
+import LoadSpinner from "../elements/LoadSpinner.vue";
+
 export default {
+  components: { LoadSpinner },
   name: "LoginCard",
   data() {
     return {
       username: "",
       password: "",
+      loading: false
     };
-    },
-  methods: {
-    handleSubmit() {
-        console.log("submit", this.username, this.password);
-        router.push({
-          name: 'feed'
-        });
-    }
   },
+  methods: {
+    async handleSubmit() {
+      this.loading = true;
+      console.log("submit", this.username, this.password);
+
+      await wait(1000);
+      this.loading = false;
+      router.push({
+        name: "feed"
+      });
+    }
+  }
 };
 </script>
 

@@ -13,6 +13,7 @@
             transition
             duration-350
             ease-in-out
+            cursor-pointer
           "
         >
           <font-awesome-icon
@@ -20,7 +21,7 @@
             fill="currentColor"
             class="w-5 h-5 mr-2"
           />
-          {{replies}}
+          {{ replies }}
         </div>
         <div
           class="
@@ -32,6 +33,7 @@
             dark:hover:text-green-400
             transition
             duration-350
+            cursor-pointer
             ease-in-out
           "
         >
@@ -41,7 +43,7 @@
             fill="currentColor"
             class="w-5 h-5 mr-2"
           />
-          {{retweets}}
+          {{ retweets }}
         </div>
         <div
           class="
@@ -53,6 +55,7 @@
             dark:hover:text-red-600
             transition
             duration-350
+            cursor-pointer
             ease-in-out
           "
         >
@@ -61,7 +64,7 @@
             fill="currentColor"
             class="w-5 h-5 mr-2"
           />
-          {{likes}}
+          {{ likes }}
         </div>
         <div
           class="
@@ -73,6 +76,7 @@
             dark:hover:text-blue-400
             transition
             duration-350
+            cursor-pointer
             ease-in-out
           "
         >
@@ -89,13 +93,10 @@
 
 <script>
 export default {
-    props: {
-        retweets: String,
-        likes: String,
-        replies: String
-    }
+  props: {
+    retweets: String,
+    likes: String,
+    replies: String,
+  },
 };
 </script>
-
-<style>
-</style>
