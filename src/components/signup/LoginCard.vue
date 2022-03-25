@@ -72,10 +72,9 @@
 
 <script>
 import router from "@/router";
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 import LoadSpinner from "../elements/LoadSpinner.vue";
-
 
 export default {
   components: { LoadSpinner },
@@ -84,23 +83,24 @@ export default {
     return {
       username: "",
       password: "",
-      loading: false
+      loading: false,
     };
   },
   methods: {
-    ...mapActions('auth', ["login"]),
-    
+    ...mapActions("auth", ["login"]),
+
     async handleSubmit() {
-      this.loading = true;
-      console.log("submit", this.username, this.password);
+      if (this.username && this.password) {
+        this.loading = true;
+        console.log("submit", this.username, this.password);
 
-      // eslint-disable-next-line no-undef
-      await this.login({username: this.username, password: this.password});
+        await this.login({ username: this.username, password: this.password });
 
-      this.loading = false;
-      router.push({
-        name: "feed"
-      });
+        this.loading = false;
+        router.push({
+          name: "feed",
+        });
+      }
     }
   }
 };

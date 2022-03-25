@@ -5,6 +5,8 @@ import Router from 'vue-router'
 import HomePage from '@/pages/HomePage'
 import LoginPage from '@/pages/LoginPage'
 import SignupPage from '@/pages/SignupPage'
+import ProfilePage from '@/pages/ProfilePage'
+
 import { store } from '@/store'
 
 Vue.use(Router)
@@ -28,6 +30,11 @@ const router = new Router({
       path: '/feed',
       name: 'feed',
       component: HomePage
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: ProfilePage
     }
   ]
 })
@@ -41,7 +48,7 @@ router.beforeEach((to, from, next) => {
     next('/feed');
   }
   else if (!publicRoute && authenticated) {
-    console.info("authenticated")
+    console.info("authenticated", to)
     next()
   }
   else if (!publicRoute && !authenticated) {

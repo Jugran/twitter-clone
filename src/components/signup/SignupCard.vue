@@ -95,6 +95,10 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      if (!this.username || !this.password) {
+        return;
+      }
+
       this.loading = true;
       console.log("submit", this.username, this.password, this.confirmPassword);
 
@@ -103,6 +107,8 @@ export default {
       if (this.password !== this.confirmPassword) {
         alert("Passwords do not match");
         this.confirmPassword = "";
+        this.loading = false;
+
       } else {
         this.loading = false;
         router.push({

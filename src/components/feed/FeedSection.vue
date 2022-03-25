@@ -19,11 +19,23 @@
     >
       <!-- Title -->
       <h2 class="dark:text-gray-100 font-bold font-sm">Home</h2>
-      <!-- /Title -->
     </div>
 
     <!-- Post Tweet -->
     <new-post :userProfile="userProfile" v-on:post-tweet="postTweet($event)" />
+    <!-- Post tweet spinner -->
+    <div
+      class="
+        flex
+        items-center
+        justify-center
+        p-1
+        border-b border-l border-r border-gray-200
+        dark:border-gray-700
+      "
+    >
+      <load-spinner v-show="postingTweet" :size="6" />
+    </div>
 
     <div v-for="tweet in tweets" :key="tweet.id">
       <tweet-card :tweet="tweet" />
@@ -62,21 +74,23 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      postingTweet: false,
     };
   },
   methods: {
     ...mapActions('feed', ["fetchFeed", "addTweet"]),
 
     async postTweet(text) {
+      this.postingTweet = true;
       console.log('adding tweet')
       await this.addTweet(text);
+      this.postingTweet = false;
     },
 
     async fetchTweets() {
       this.loading = true;
       await this.fetchFeed();
-      console.log("🚀 ~ tweets", this.tweets);
       this.loading = false;
     },
   },

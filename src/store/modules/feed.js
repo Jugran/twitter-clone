@@ -3,12 +3,13 @@ import { fetchFeed } from '@/services/feedService'
 import { wait } from '@/helpers/wait'
 
 
-
-const state = () => {
+const getDefaultState = () => {
     return {
         tweets: []
     }
 }
+// initial state
+const state = getDefaultState()
 
 const mutations = {
     setTweets(state, tweets) {
@@ -19,17 +20,21 @@ const mutations = {
     },
     appendTweets(state, tweets) {
         state.tweets = tweets.concat(state.tweets);
+    },
+    resetState(state) {
+        Object.assign(state, getDefaultState());
     }
 }
 
 const actions = {
-    async fetchFeed({ commit }) {
+    async fetchFeed({ commit, state }) {
         try {
             // const response = await this.$axios.get('/tweets');
-            const response = fetchFeed();
-            await wait(2000);
-
-            commit('setTweets', response.data);
+            if (state.tweets.length === 0) {
+                const response = fetchFeed();
+                await wait(2000);
+                commit('setTweets', response.data);
+            }
         }
         catch (error) {
             console.error("can't fetch tweets", error.message);
@@ -51,9 +56,8 @@ const actions = {
             // const response = await this.$axios.post('/tweets', { text });
 
             const date = new Date();
-            const timestamp = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + date.toDateString();
+            const timestamp = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + " " + date.toDateString();
             const { user, id } = rootGetters['profile/getProfile'];
-            console.log("🚀 ~ addTweet ~ profile",  { user, id })
 
             const tweet = {
                 id: null,
@@ -66,6 +70,8 @@ const actions = {
             }
             tweet.id = (Math.random() * 10000).toFixed(0);
             await wait(1000);
+
+            commit('profile/addTweet', tweet, { root: true });
             commit('addTweet', tweet);
         }
         catch (error) {

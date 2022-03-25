@@ -75,7 +75,6 @@ export default {
       await wait(2000);
       // const {data} = await fetchTrending();
       this.trends = fetchTrending().data;
-      console.log("🚀 ~  this.trends", this.trends);
       this.loading = false;
     },
   },

@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 import profile from './modules/profile'
 import feed from './modules/feed'
-
+import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -12,5 +12,6 @@ export const store = new Vuex.Store({
         auth,
         profile,
         feed
-    }
+    },
+    plugins: [createPersistedState()]
 })

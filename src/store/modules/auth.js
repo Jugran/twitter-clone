@@ -2,13 +2,15 @@
 import { wait } from '@/helpers/wait'
 import router from '@/router';
 
-const state = () => {
+const getDefaultState = () => {
     return {
         user: null,
         token: null,
         isAuthenticated: false,
     }
 }
+// initial state
+const state = getDefaultState()
 
 const mutations = {
     setUser(state, user) {
@@ -16,10 +18,8 @@ const mutations = {
         state.token = user.token;
         state.isAuthenticated = true;
     },
-    clearUser(state) {
-        state.user = null;
-        state.token = null;
-        state.isAuthenticated = false;
+    resetState(state) {
+        Object.assign(state, getDefaultState());
     }
 }
 
@@ -66,9 +66,13 @@ const actions = {
         }
     },
     logout({ commit }) {
-        console.log('Logout');
-        commit('clearUser');
-        router.push('/');
+        if (window.confirm("Are you sure you want to logout?")) {
+            console.log('Logout');
+            commit('resetState');
+            commit('profile/resetState', null, { root: true });
+            commit('feed/resetState', null, { root: true });
+            router.push('/');
+        }
     },
 }
 
