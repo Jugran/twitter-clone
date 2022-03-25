@@ -3,10 +3,10 @@
   <div class="min-h-1/2 bg-gray-900 border border-gray-900 rounded-2xl">
     <div
       class="
-        sm:mx-24
+        xs:mx-24
         md:mx-34
         lg:mx-56
-        mx-auto
+        mx-14
         flex
         items-center
         space-y-4

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './styles/main.css'
 
-import { store } from './store/store'
+import { store } from './store'
 import Router from './router'
 
 
@@ -10,7 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faHouse, faHashtag, faBars, faPen,
   faMagnifyingGlass, faBarsProgress, faRepeat,
-  faArrowUpFromBracket, faCircleCheck
+  faArrowUpFromBracket, faCircleCheck, faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faBell, faEnvelope, faBookmark, faUser,
@@ -20,11 +20,12 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faHouse, faHashtag, faBars, faPen,
-  faMagnifyingGlass, faBarsProgress, faRepeat, faArrowUpFromBracket,
+  faMagnifyingGlass, faBarsProgress, faRepeat, faArrowUpFromBracket, faArrowRightFromBracket,
   faCircleCheck, faBell, faEnvelope, faBookmark, faUser, faImage,
   faFaceSmile, faCalendar, faComment, faHeart, faTwitter
 )
 
+// Vue.prototype.$axios = axios
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

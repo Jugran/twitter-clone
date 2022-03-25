@@ -23,7 +23,7 @@
     </div>
 
     <!-- Post Tweet -->
-    <new-post userProfile="zebra" />
+    <new-post :userProfile="userProfile" v-on:post-tweet="postTweet($event)" />
 
     <div v-for="tweet in tweets" :key="tweet.id">
       <tweet-card :tweet="tweet" />
@@ -41,7 +41,7 @@
         dark:border-gray-700
       "
     >
-      <load-spinner v-show="loading" size="8" />
+      <load-spinner v-show="loading" :size="8" />
     </div>
   </div>
 </template>
@@ -50,9 +50,8 @@
 import NewPost from "../tweet/NewPost.vue";
 import TweetCard from "../tweet/TweetCard.vue";
 
-import { fetchFeed } from "../../services/feedService";
-import { wait } from "../../helpers/wait";
 import LoadSpinner from "../elements/LoadSpinner.vue";
+import { mapActions } from 'vuex';
 
 export default {
   name: "FeedSection",
@@ -63,23 +62,31 @@ export default {
   },
   data() {
     return {
-      tweets: [],
-      loading: true,
-      userProfile: "",
+      loading: true
     };
   },
   methods: {
+    ...mapActions('feed', ["fetchFeed", "addTweet"]),
+
+    async postTweet(text) {
+      console.log('adding tweet')
+      await this.addTweet(text);
+    },
+
     async fetchTweets() {
-      await wait(2000);
       this.loading = true;
-      this.tweets = fetchFeed().data;
+      await this.fetchFeed();
       console.log("🚀 ~ tweets", this.tweets);
       this.loading = false;
-      // this.$http.get('/api/tweets').then(response => {
-      //     this.tweets = response.data;
-      //     this.loading = false;
-      // });
     },
+  },
+  computed: {
+    userProfile() {
+      return this.$store.state.profile.user.avatar;
+    },
+    tweets() {
+      return this.$store.getters["feed/getFeed"];
+    }
   },
   created() {
     this.fetchTweets();

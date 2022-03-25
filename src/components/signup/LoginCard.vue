@@ -3,10 +3,10 @@
   <div class="min-h-1/2 bg-gray-900 border border-gray-900 rounded-2xl">
     <div
       class="
-        sm:mx-24
+        xs:mx-24
         md:mx-34
         lg:mx-56
-        mx-auto
+        mx-14
         flex
         items-center
         space-y-4
@@ -72,8 +72,10 @@
 
 <script>
 import router from "@/router";
-import { wait } from "@/helpers/wait";
+import { mapActions } from 'vuex'
+
 import LoadSpinner from "../elements/LoadSpinner.vue";
+
 
 export default {
   components: { LoadSpinner },
@@ -86,11 +88,15 @@ export default {
     };
   },
   methods: {
+    ...mapActions('auth', ["login"]),
+    
     async handleSubmit() {
       this.loading = true;
       console.log("submit", this.username, this.password);
 
-      await wait(1000);
+      // eslint-disable-next-line no-undef
+      await this.login({username: this.username, password: this.password});
+
       this.loading = false;
       router.push({
         name: "feed"

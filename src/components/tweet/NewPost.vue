@@ -132,8 +132,10 @@ export default {
     },
     methods: {
         submit() {
-            this.$emit('tweet', this.text);
-            this.text = '';
+            if (this.text.length > 0) {
+                this.$emit('post-tweet', this.text);
+                this.text = '';
+            }
         }
     }
 };
