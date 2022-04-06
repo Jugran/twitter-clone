@@ -1,4 +1,3 @@
-// for dummy data
 import { fetchFeed } from '@/services/feedService'
 import { wait } from '@/helpers/wait'
 

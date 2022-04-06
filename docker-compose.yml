@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  api:
+    &api
+    container_name: api
+    image: node-api
+    init: true
+    tty: true
+    stdin_open: true
+    restart: always
+
+    build: .
+
+    env_file:
+      - ./.env
+
+    networks:
+      - api-db
+
+    depends_on:
+      - postgres
+
+    volumes:
+      - ./backend:/home/node/code
+
+    ports:
+      - 5000:5000
+
+    entrypoint: bash -c ". startup-check.sh && npm run start"
+
+  shell:
+    <<: *api
+    container_name: api-shell
+
+    ports:
+      - 5000:5000
+      - 9229:9229
+
+    profiles:
+      - shell
+
+    entrypoint: bash -c ". startup-check.sh; exec bash"
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:alpine
+
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - ./data:/var/lib/postgresql/data 
+
+    networks:
+      - api-db
+
+    ports:
+      - 5432:5432
+
+networks:
+  api-db:
