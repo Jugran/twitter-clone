@@ -64,3 +64,52 @@ exports.login = async (request, response) => {
     }
 
 }
+
+exports.fetchProfile = async (request, response) => {
+    const { id } = request.params;
+
+    try {
+        const user = await User.query().findById(id);
+
+        if (!user) {
+            return response.status(400).send({ success: false, error: "User not found" });
+        }
+
+        delete user.password; // remove password from response
+        delete user.updatedAt;
+
+        console.log('Retrieved user:', user.username);
+        return response.status(200).send({ success: true, user });
+
+    }
+    catch (error) {
+        console.error("Error fetching user profile:", error.message);
+        return response.status(400).send({ sucess: false, error: "Cannot fetch User Profile" });
+    }
+}
+
+
+exports.updateProfile = async (request, response) => {
+    const { name, avatar, bio } = request.body;
+    const { id } = response.locals;
+
+    try {
+        const updated = await User.query()
+            .patchAndFetchById(id, {
+                name,
+                avatar,
+                bio
+            });
+
+        delete updated.password; // remove password from response
+        delete updated.updatedAt;
+
+        console.log('Updated user:', updated.username);
+        return response.status(200).send({ success: true, updated});
+
+    }
+    catch (error) {
+        console.error("Error profile update:", error.message);
+        return response.status(400).send({ sucess: false, error: "Cannot update User Profile" });
+    }
+}

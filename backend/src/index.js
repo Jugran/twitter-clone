@@ -9,6 +9,7 @@ const { verifyAuth } = require('./middlewares/authenticate');
 // import routes
 const authRoutes = require('./routes/auth.routes');
 const tweetRoutes = require('./routes/tweet.routes');
+const profileRoutes = require('./routes/profile.routes');
 
 
 // init knex
@@ -37,7 +38,8 @@ app.use((req, res, next) => {
 
 app.use('/auth', authRoutes);
 
-app.use('/tweet', verifyAuth, tweetRoutes)
+app.use('/tweets', verifyAuth, tweetRoutes);
+app.use('/profile', verifyAuth, profileRoutes);
 
 
 app.listen(PORT, () => {
