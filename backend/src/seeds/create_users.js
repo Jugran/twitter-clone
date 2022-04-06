@@ -4,12 +4,11 @@
  */
 exports.seed = async function (knex) {
     // Deletes ALL existing entries
-    await knex('table_name').del();
+    await knex('users').del();
 
     // insert data
-    await knex('table_name').insert([
+    await knex('users').insert([
         {
-            id: 1,
             name: 'John Doe',
             username: 'johndoe',
             password: 'password',
@@ -19,7 +18,6 @@ exports.seed = async function (knex) {
             following: 10
         },
         {
-            id: 2,
             name: 'Jane James',
             username: 'janejames',
             password: 'password',

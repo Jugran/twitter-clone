@@ -17,11 +17,9 @@ const verifyAuth = (req, res, next) => {
     try {
         // verify token 
 
-        const { role, uuid, email } = jwt.verify(idToken, JWT_SECRET);
-        res.locals.role = role;
-        res.locals.uuid = uuid;
-        res.locals.email = email;
-        res.locals.authenticated = true;
+        const { id, username } = jwt.verify(idToken, JWT_SECRET);
+        res.locals.id = id;
+        res.locals.username = username;
         next();
     }
     catch (error) {
@@ -29,36 +27,5 @@ const verifyAuth = (req, res, next) => {
     }
 
 }
-
-exports.getTutorAccess = (req, res, next) => {
-    return verifyAuth(req, res, () => {
-        if (res.locals.authenticated) {
-            if (res.locals.role == "tutor") {
-                return next();
-            }
-            return res.sendStatus(403);
-
-        }
-        else {
-            return res.status(401).json({ success: false, error: "Unauthorized", message: "invalid or expired token" });
-        }
-    })
-};
-
-exports.getStudentAccess = (req, res, next) => {
-    return verifyAuth(req, res, () => {
-        if (res.locals.authenticated) {
-            if (res.locals.role == "student") {
-                return next();
-            }
-            return res.sendStatus(403);
-
-        }
-        else {
-            return res.status(401).json({ success: false, error: "Unauthorized", message: "invalid or expired token" });
-        }
-    })
-};
-
 
 exports.verifyAuth = verifyAuth;

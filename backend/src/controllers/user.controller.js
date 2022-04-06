@@ -24,11 +24,11 @@ exports.signUp = async (request, response) => {
             password
         });
 
-        console.log("New user added", person.username);
+        console.log("New user added:", person.username);
         return response.status(200).send({ success: true });
     }
     catch (error) {
-        console.error("🚀 Error Signup", error.message);
+        console.error("🚀 Error Signup:", error.message);
         return response.status(400).send({ sucess: false, error: "Cannot Signup User" });
     }
 }
@@ -53,13 +53,13 @@ exports.login = async (request, response) => {
         }
 
         console.log('User logged in:', user.username);
-        
+
         const token = createToken({ username: user.username, id: user.id });
         return response.status(200).send({ success: true, token });
 
     }
     catch (error) {
-        console.error("🚀 Error Login", error.message);
+        console.error("🚀 Error Login:", error.message);
         return response.status(400).send({ sucess: false, error: "Cannot Login User" });
     }
 

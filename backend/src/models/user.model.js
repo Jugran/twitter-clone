@@ -12,7 +12,7 @@ class User extends Password(Model) {
     static get jsonSchema() {
         return {
             type: 'object',
-            required: ['username', 'email', 'password'],
+            required: ['username', 'password'],
 
             properties: {
                 id: { type: 'integer' },
@@ -23,8 +23,6 @@ class User extends Password(Model) {
                 bio: { type: 'string', minLength: 1, maxLength: 255 },
                 followers: { type: 'integer' },
                 following: { type: 'integer' },
-                createdAt: { type: 'date' },
-                updatedAt: { type: 'date' }
             }
         };
     }

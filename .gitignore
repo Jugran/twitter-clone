@@ -27,3 +27,6 @@ pnpm-debug.log*
 firebase.json
 .firebaserc
 .firebase/
+
+migrations/
+seeds/

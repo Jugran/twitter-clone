@@ -4,9 +4,11 @@ const Knex = require('knex');
 const { Model } = require('objection');
 
 const kenxfile = require('./knexfile');
+const { verifyAuth } = require('./middlewares/authenticate');
 
 // import routes
 const authRoutes = require('./routes/auth.routes');
+const tweetRoutes = require('./routes/tweet.routes');
 
 
 // init knex
@@ -34,6 +36,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', authRoutes);
+
+app.use('/tweet', verifyAuth, tweetRoutes)
 
 
 app.listen(PORT, () => {
