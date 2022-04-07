@@ -8,7 +8,7 @@
  - [x] User profile with user's posted tweets
  - [x] Timeline with all tweets
  - [x] Post Tweets
- - [ ] Follow/Unfollow
+ - [x] Follow/Unfollow
 
 **Technologies explored and implemented**
  - Vue 2.0
@@ -18,8 +18,8 @@
 
 
 #### Backend
- - [ ] Authentication with JWT
- - [ ] Postgresql Database with Objection ORM + knex
+ - [x] Authentication with JWT
+ - [x] Postgresql Database with Objection ORM + knex
 
 
 
