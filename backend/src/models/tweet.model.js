@@ -26,6 +26,7 @@ class Tweet extends Model {
             user: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: User,
+                filter: query => query.select('id', 'name', 'username', 'avatar'),
                 join: {
                     from: 'tweets.userID',
                     to: 'users.id'

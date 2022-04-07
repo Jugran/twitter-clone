@@ -20,3 +20,7 @@ if [ ! -d "node_modules" ]; then
 		exit 1;
 	fi
 fi
+
+echo "running migrations"
+npx knex migrate:latest
+npx knex seed:run

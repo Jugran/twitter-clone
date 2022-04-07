@@ -61,7 +61,7 @@ exports.login = async (request, response) => {
         console.log('User logged in:', user.username);
 
         const token = createToken({ username: user.username, id: user.id });
-        return response.status(200).send({ success: true, token });
+        return response.status(200).send({ success: true, token, id: user.id });
 
     }
     catch (error) {

@@ -80,8 +80,9 @@ exports.getTweetsFeed = async (request, response) => {
         users.push({ id });
 
         const tweets = await Tweet.query()
-            .whereIn('userID', users.map(user => user.id))
-            .orderBy('createdAt', 'desc');
+        .withGraphFetched('user')
+        .whereIn('userID', users.map(user => user.id))
+        .orderBy('createdAt', 'desc');
 
         console.log('Retrieved tweets:', tweets.length);
         return response.status(200).send({ success: true, tweets });

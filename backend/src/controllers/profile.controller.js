@@ -116,7 +116,7 @@ exports.getFollowing = async (request, response) => {
             .for(id)
             .select('id', 'name', 'username', 'avatar');
 
-        console.log('Retrieved following:', following);
+        console.log('Retrieved following:', following.length);
         return response.status(200).send({ success: true, following });
 
     }

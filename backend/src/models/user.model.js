@@ -32,6 +32,7 @@ class User extends Password(Model) {
             tweets: {
                 relation: Model.HasManyRelation,
                 modelClass: Tweet,
+                filter: query => query.select('id', 'text', 'createdAt'),
                 join: {
                     from: 'users.id',
                     to: 'tweets.userID'
@@ -40,6 +41,7 @@ class User extends Password(Model) {
             following: {
                 relation: Model.ManyToManyRelation,
                 modelClass: User,
+                filter: query => query.select('id', 'name', 'username', 'avatar'),
                 join: {
                     from: 'users.id',
                     through: {
@@ -52,6 +54,7 @@ class User extends Password(Model) {
             followers: {
                 relation: Model.ManyToManyRelation,
                 modelClass: User,
+                filter: query => query.select('id', 'name', 'username', 'avatar'),
                 join: {
                     from: 'users.id',
                     through: {

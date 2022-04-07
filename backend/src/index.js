@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const Knex = require('knex');
 const { Model } = require('objection');
+const cors = require('cors');
 
 const kenxfile = require('./knexfile');
 const { verifyAuth } = require('./middlewares/authenticate');
@@ -22,9 +23,11 @@ const app = express();
 
 app.use(helmet());
 app.use(express.json());
+app.use(cors());
 
 
 const PORT = parseInt(process.env.PORT);
+
 
 app.post('/echo', (req, res) => {
     console.log(`Body:  ${JSON.stringify(req.body, null, 4)}`);
