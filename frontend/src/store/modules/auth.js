@@ -27,7 +27,6 @@ const mutations = {
 const actions = {
     async login({ commit, dispatch }, { username, password }) {
         try {
-            console.log("🚀 login", username, password);
             const { data } = await Api().post('auth/login', { username, password });
 
             commit('setUser', data);
@@ -39,14 +38,10 @@ const actions = {
             return false;
         }
     },
-    async register(context, { username, password }) {
+    async register(context, { name, username, password }) {
         try {
-            console.log("🚀 signup", username, password);
-
-            const { data } = await Api().post('auth/signup', { username, password });
-            
+            const { data } = await Api().post('auth/signup', { username, password, name });
             return data;
-            
         }
         catch (error) {
             console.error("can't register", error.message);

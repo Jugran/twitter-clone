@@ -32,8 +32,23 @@
           border border-gray-700
           focus:border-blue-700
         "
+        placeholder="Full Name"
+        type="text"
+        name="name"
+        required
+        v-model="name"
+      />
+      <input
+        class="
+          w-full
+          p-2
+          bg-gray-900
+          rounded-md
+          border border-gray-700
+          focus:border-blue-700
+        "
         placeholder="username"
-        type="email"
+        type="text"
         name="username"
         required
         v-model="username"
@@ -87,6 +102,7 @@ export default {
   components: { LoadSpinner },
   data() {
     return {
+      name: "",
       username: "",
       password: "",
       confirmPassword: "",
@@ -96,12 +112,12 @@ export default {
   methods: {
     ...mapActions("auth", ["register"]),
     async handleSubmit() {
-      if (!this.username || !this.password) {
+      if (!this.username || !this.password || !this.name) {
+        alert("Please fill in all fields");
         return;
       }
 
       this.loading = true;
-      console.log("submit", this.username, this.password, this.confirmPassword);
 
       if (this.password !== this.confirmPassword) {
         alert("Passwords do not match");
@@ -111,6 +127,7 @@ export default {
       }
 
       const { success, error, errors } = await this.register({
+        name: this.name,
         username: this.username,
         password: this.password,
       });
@@ -119,12 +136,13 @@ export default {
 
       if (!success) {
         alert(error ?? errors[0]);
+        this.name = "";
         this.username = "";
         this.password = "";
         this.confirmPassword = "";
       } else {
         router.push({
-          name: "feed",
+          name: "login",
         });
       }
     },

@@ -15,11 +15,12 @@ const createToken = (body, max_age = 3 * 24 * 60 * 60) => {
 
 
 exports.signUp = async (request, response) => {
-    const { username, password } = request.body;
+    const { username, password, name } = request.body;
 
     try {
 
         const person = await User.query().insert({
+            name,
             username,
             password
         });
