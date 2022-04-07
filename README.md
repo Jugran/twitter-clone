@@ -1,6 +1,6 @@
 # twitter-clone
 
-**Live Demo**: [Twitter-clone](https://twitter-clone-yk.web.app)
+**Live Demo**: (frontend only) [Twitter-clone](https://twitter-clone-yk.web.app)
 
 ## Project Status:-
 #### Frontend (with dummy values)
@@ -27,19 +27,11 @@
 ```
 git clone https://github.com/Jugran/twitter-clone.git
 cd twitter-clone
-
-npm install
+cp .env.example .env
 ```
 
-#### Compiles and hot-reloads for development
+Start docker containers
 ```
-npm run serve
-```
-
-#### Compiles and minifies for production
-```
-npm run build
+docker-compose up
 ```
 
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
