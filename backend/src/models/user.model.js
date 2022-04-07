@@ -1,8 +1,6 @@
 const { Model } = require('objection');
-const Tweet = require('./tweet.model');
 
 const Password = require('objection-password')();
-
 
 class User extends Password(Model) {
     static get tableName() {
@@ -28,6 +26,8 @@ class User extends Password(Model) {
     }
 
     static get relationMappings() {
+        const Tweet = require('./tweet.model');
+
         return {
             tweets: {
                 relation: Model.HasManyRelation,
@@ -35,6 +35,30 @@ class User extends Password(Model) {
                 join: {
                     from: 'users.id',
                     to: 'tweets.userID'
+                }
+            },
+            following: {
+                relation: Model.ManyToManyRelation,
+                modelClass: User,
+                join: {
+                    from: 'users.id',
+                    through: {
+                        from: 'follows.followerID',
+                        to: 'follows.followingID'
+                    },
+                    to: 'users.id'
+                }
+            },
+            followers: {
+                relation: Model.ManyToManyRelation,
+                modelClass: User,
+                join: {
+                    from: 'users.id',
+                    through: {
+                        from: 'follows.followingID',
+                        to: 'follows.followerID'
+                    },
+                    to: 'users.id'
                 }
             }
         };

@@ -28,5 +28,5 @@ firebase.json
 .firebaserc
 .firebase/
 
-migrations/
 seeds/
+data/

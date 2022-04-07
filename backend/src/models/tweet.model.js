@@ -1,6 +1,5 @@
 const { Model } = require('objection');
 
-const User = require('./user.model');
 
 class Tweet extends Model {
     static get tableName() {
@@ -21,8 +20,10 @@ class Tweet extends Model {
     }
 
     static get relationMappings() {
+        const User = require('./user.model');
+
         return {
-            users: {
+            user: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: User,
                 join: {

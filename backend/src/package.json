@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "pm2-dev index.js",
+    "debug": "pm2-dev index.js --node-args --inspect=0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

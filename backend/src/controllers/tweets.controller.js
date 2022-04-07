@@ -1,3 +1,4 @@
+const User = require('../models/user.model');
 const Tweet = require('../models/tweet.model');
 
 exports.postNewTweet = async (request, response) => {
@@ -64,5 +65,29 @@ exports.deleteTweet = async (request, response) => {
     catch (error) {
         console.error("Error Deleting Tweet:", error.message);
         return response.status(400).send({ sucess: false, error: "Cannot Delete Tweet" });
+    }
+}
+
+
+exports.getTweetsFeed = async (request, response) => {
+    const { id } = response.locals;
+
+    try {
+        const users = await User.relatedQuery('following')
+            .for(id)
+            .select('id');
+
+        users.push({ id });
+
+        const tweets = await Tweet.query()
+            .whereIn('userID', users.map(user => user.id))
+            .orderBy('createdAt', 'desc');
+
+        console.log('Retrieved tweets:', tweets.length);
+        return response.status(200).send({ success: true, tweets });
+    }
+    catch (error) {
+        console.error("Error Getting Tweets:", error.message);
+        return response.status(400).send({ sucess: false, error: "Cannot Get Tweets" });
     }
 }
