@@ -19,11 +19,13 @@
     <!-- Twitter Accounts -->
 
     <div v-for="profile in profiles" :key="profile.id">
-        <profile-card
-          :name="profile.user.name"
-          :avatar="profile.user.avatar"
-          :username="profile.user.username"
-          />
+      <profile-card
+        :name="profile.name"
+        :avatar="profile.avatar"
+        :username="profile.username"
+        :id="profile.id"
+        v-on:follow="follow($event)"
+      />
     </div>
 
     <!-- Loader -->
@@ -70,26 +72,32 @@
 </template>
 
 <script>
-import { fetchProfiles } from "../../services/trendingService";
-import { wait } from "../../helpers/wait";
-import ProfileCard from './ProfileCard.vue';
+import ProfileCard from "./ProfileCard.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { ProfileCard },
   data() {
     return {
-      profiles: [],
       loading: true,
     };
   },
   methods: {
+    ...mapActions("profile", ["fetchSuggestions", "followUser"]),
     async fetchSuggestedProfiles() {
       this.loading = true;
-      await wait(2000);
-      const { data } = fetchProfiles();
-      this.profiles = data;
+      await this.fetchSuggestions();
       this.loading = false;
     },
+    async follow(user) {
+      console.log("Follow", user);
+      await this.followUser(user);
+    }
+  },
+  computed: {
+    profiles() {
+      return this.$store.state.profile.suggestedUsers;
+    }
   },
   created() {
     this.fetchSuggestedProfiles();

@@ -13,7 +13,8 @@ const getDefaultState = () => {
             joined: null
         },
         DarkMode: false,
-        tweets: []
+        tweets: [],
+        suggestedUsers: []
     }
 }
 // initial state
@@ -32,6 +33,9 @@ const mutations = {
     },
     resetState(state) {
         Object.assign(state, getDefaultState());
+    },
+    setSuggestedUsers(state, users) {
+        state.suggestedUsers = users;
     }
 
 }
@@ -78,6 +82,38 @@ const actions = {
         }
         catch (error) {
             console.error("can't fetch tweets", error.message);
+        }
+    },
+    async fetchSuggestions({ commit, rootState }) {
+
+        try {
+            const { data } = await Api(rootState.auth.token).get(`profile/suggestions`);
+
+            if (data.suggestions.length > 0) {
+                commit('setSuggestedUsers', data.suggestions);
+            }
+        }
+        catch (error) {
+            console.error("can't fetch suggestions", error.message);
+        }
+    },
+    async followUser({ commit, rootState, state, dispatch }, id) {
+        try {
+            const { data } = await Api(rootState.auth.token)
+                .post(`profile/follow`, {
+                    "followingID": id,
+                    "unfollow": false
+                });
+
+            if (data.success) {
+                const suggestions = state.suggestedUsers.filter(u => u.id !== id);
+                commit('setSuggestedUsers', suggestions);
+                // fetch feed
+                dispatch('feed/fetchFeed', null, { root: true });
+            }
+        }
+        catch (error) {
+            console.error("can't follow user", error.message);
         }
     }
 }

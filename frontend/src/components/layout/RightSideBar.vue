@@ -9,7 +9,7 @@
 
         <!-- What’s happening -->
 
-        <trending-topics />
+        <!-- <trending-topics /> -->
 
         <!-- Who to follow -->
         <profile-suggestions />
@@ -41,13 +41,13 @@
 <script>
 import ProfileSuggestions from '../trending/ProfileSuggestions.vue';
 import SearchBar from '../trending/SearchBar.vue';
-import TrendingTopics from '../trending/TrendingTopics.vue';
+// import TrendingTopics from '../trending/TrendingTopics.vue';
 
 export default {
     name: 'RightNavBar',
     components: {
         SearchBar,
-        TrendingTopics,
+        // TrendingTopics,
         ProfileSuggestions
     }
 }

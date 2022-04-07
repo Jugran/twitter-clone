@@ -32,10 +32,10 @@ exports.signUp = async (request, response) => {
 
         if (error.message.includes('duplicate key')) {
             console.log("Username already taken:", username, error.message);
-            return response.status(400).send({ sucess: false, error: "Username already taken" });
+            return response.status(400).send({ success: false, error: "Username already taken" });
         }
         console.error("🚀 Error Signup:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Signup User" });
+        return response.status(400).send({ success: false, error: "Cannot Signup User" });
     }
 }
 
@@ -67,7 +67,7 @@ exports.login = async (request, response) => {
     }
     catch (error) {
         console.error("🚀 Error Login:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Login User" });
+        return response.status(400).send({ success: false, error: "Cannot Login User" });
     }
 
 }

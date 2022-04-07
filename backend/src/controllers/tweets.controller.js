@@ -20,7 +20,7 @@ exports.postNewTweet = async (request, response) => {
     }
     catch (error) {
         console.error("Error Posting Tweet:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Post Tweet" });
+        return response.status(400).send({ success: false, error: "Cannot Post Tweet" });
     }
 
 }
@@ -44,7 +44,7 @@ exports.getUserTweets = async (request, response) => {
     }
     catch (error) {
         console.error("Error Getting Tweets:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Get Tweets" });
+        return response.status(400).send({ success: false, error: "Cannot Get Tweets" });
     }
 }
 
@@ -66,7 +66,7 @@ exports.deleteTweet = async (request, response) => {
     }
     catch (error) {
         console.error("Error Deleting Tweet:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Delete Tweet" });
+        return response.status(400).send({ success: false, error: "Cannot Delete Tweet" });
     }
 }
 
@@ -91,6 +91,6 @@ exports.getTweetsFeed = async (request, response) => {
     }
     catch (error) {
         console.error("Error Getting Tweets:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot Get Tweets" });
+        return response.status(400).send({ success: false, error: "Cannot Get Tweets" });
     }
 }

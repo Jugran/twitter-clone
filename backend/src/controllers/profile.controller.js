@@ -19,7 +19,7 @@ exports.fetchProfile = async (request, response) => {
     }
     catch (error) {
         console.error("Error fetching user profile:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot fetch User Profile" });
+        return response.status(400).send({ success: false, error: "Cannot fetch User Profile" });
     }
 }
 
@@ -45,7 +45,7 @@ exports.updateProfile = async (request, response) => {
     }
     catch (error) {
         console.error("Error profile update:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot update User Profile" });
+        return response.status(400).send({ success: false, error: "Cannot update User Profile" });
     }
 }
 
@@ -80,11 +80,11 @@ exports.updateFollowing = async (request, response) => {
 
         if (error.message.includes('duplicate key')) {
             console.log("User already following:", error.message);
-            return response.status(400).send({ sucess: false, error: "User already following" });
+            return response.status(400).send({ success: false, error: "User already following" });
         }
 
         console.error("Error follower update:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot update User follower" });
+        return response.status(400).send({ success: false, error: "Cannot update User follower" });
     }
 }
 
@@ -103,7 +103,7 @@ exports.getFollowers = async (request, response) => {
     }
     catch (error) {
         console.error("Error fetching followers:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot fetch followers" });
+        return response.status(400).send({ success: false, error: "Cannot fetch followers" });
     }
 }
 
@@ -122,6 +122,30 @@ exports.getFollowing = async (request, response) => {
     }
     catch (error) {
         console.error("Error fetching following:", error.message);
-        return response.status(400).send({ sucess: false, error: "Cannot fetch following" });
+        return response.status(400).send({ success: false, error: "Cannot fetch following" });
+    }
+}
+
+exports.getProfileSuggestions = async (request, response) => {
+    const { id } = response.locals;
+    console.log("🚀 ~ file: profile.controller.js ~ line 131 ~ exports.getProfileSuggestions= ~ id", id)
+
+    try {
+        const following = await User.relatedQuery('following')
+            .for(id)
+            .select('id');
+
+        const suggestions = await User.query()
+            .select('id', 'name', 'username', 'avatar')
+            .where('id', '!=', id)
+            .whereNotIn('id', following.map(following => following.id))
+
+        console.log('Retrieved suggestions:', suggestions.length);
+        return response.status(200).send({ success: true, suggestions: suggestions });
+
+    }
+    catch (error) {
+        console.error("Error fetching suggestions:", error.message);
+        return response.status(400).send({ success: false, error: "Cannot fetch suggestions" });
     }
 }

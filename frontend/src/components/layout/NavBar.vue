@@ -8,6 +8,8 @@
                 <span class="hidden xl:block ml-4 font-bold text-md">Home</span>
             </router-link>
 
+            <div v-show="false">
+
             <a
             href="#"
             class="flex items-center justify-center xl:justify-start text-gray-800 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 mb-8 transition duration-350 ease-in-out">
@@ -53,6 +55,9 @@
                 </span>
             </a>
 
+            </div>
+
+
             <router-link to="/profile" exact
             class="flex items-center justify-center xl:justify-start text-gray-800 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 mb-8 transition duration-350 ease-in-out"
             >
@@ -63,13 +68,13 @@
             </router-link>
 
 
-            <a
+            <!-- <a
             href="#"
             class="mx-auto w-11 h-11 xl:w-auto flex items-center justify-center bg-blue-400 hover:bg-blue-500 py-3 rounded-full text-white font-bold font-sm transition duration-350 ease-in-out mb-10"
             >
             <font-awesome-icon icon="fa-solid fa-pen" fill="currentColor" class="block xl:hidden h-6 w-6"/>
             <span class="hidden xl:block font-bold text-md">Tweet</span>
-            </a>
+            </a> -->
         </nav> 
 </template>
 

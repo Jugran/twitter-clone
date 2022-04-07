@@ -24,7 +24,7 @@
           <h1 class="text-gray-900 dark:text-white font-bold text-sm">
             {{name}}
           </h1>
-          <p class="text-gray-400 text-sm">{{username}}</p>
+          <p class="text-gray-400 text-sm">@{{username}}</p>
         </div>
       </div>
       <div class="">
@@ -40,6 +40,7 @@
               rounded-full
               border-2 border-blue-400
             "
+            @click.prevent="follow()"
           >
             Follow
           </button>
@@ -52,6 +53,9 @@
 <script>
 export default {
     props: {
+        id: {
+          type: Number
+        },
         name: {
             name: String,
             required: true
@@ -68,6 +72,11 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        }
+    },
+    methods: {
+        follow() {
+            this.$emit('follow', this.id);
         }
     }
 };
