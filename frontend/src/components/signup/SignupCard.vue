@@ -79,8 +79,8 @@
 
 <script>
 import router from "@/router";
-import LoadSpinner from '../elements/LoadSpinner.vue';
-import { wait } from "@/helpers/wait";
+import LoadSpinner from "../elements/LoadSpinner.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "SignupCard",
@@ -90,10 +90,11 @@ export default {
       username: "",
       password: "",
       confirmPassword: "",
-      loading: false
+      loading: false,
     };
   },
   methods: {
+    ...mapActions("auth", ["register"]),
     async handleSubmit() {
       if (!this.username || !this.password) {
         return;
@@ -102,22 +103,32 @@ export default {
       this.loading = true;
       console.log("submit", this.username, this.password, this.confirmPassword);
 
-      await wait(1000);
-
       if (this.password !== this.confirmPassword) {
         alert("Passwords do not match");
         this.confirmPassword = "";
         this.loading = false;
-
-      } else {
-        this.loading = false;
-        router.push({
-          name: "login",
-        });
+        return;
       }
 
-    }
-  }
+      const { success, error, errors } = await this.register({
+        username: this.username,
+        password: this.password,
+      });
+
+      this.loading = false;
+
+      if (!success) {
+        alert(error ?? errors[0]);
+        this.username = "";
+        this.password = "";
+        this.confirmPassword = "";
+      } else {
+        router.push({
+          name: "feed",
+        });
+      }
+    },
+  },
 };
 </script>
 

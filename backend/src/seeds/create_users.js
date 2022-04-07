@@ -6,7 +6,7 @@ const users = [
         name: 'Bruce Wayne',
         username: 'thebatman',
         password: 'iambatman',
-        avatar: 'bat',
+        avatar: 'horse',
         bio: 'Looking for a new Robin, as always. LOL!',
         followers: 0,
         following: 0
@@ -16,7 +16,7 @@ const users = [
         name: 'The Joker',
         username: 'therealjoker',
         password: 'batmansucks',
-        avatar: 'clown',
+        avatar: 'fox',
         bio: "It's not about the money ...",
         followers: 0,
         following: 0
@@ -26,7 +26,7 @@ const users = [
         name: 'The Robin',
         username: 'secondrobin',
         password: 'batman-pls-help',
-        avatar: 'panda',
+        avatar: 'monkey',
         bio: "I'm Batman's new Robin!",
         followers: 0,
         following: 0

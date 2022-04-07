@@ -17,6 +17,7 @@ services:
 
     networks:
       - api-db
+      - api-frontend
 
     depends_on:
       - postgres
@@ -28,6 +29,26 @@ services:
       - 5000:5000
 
     entrypoint: bash -c ". startup-check.sh && npm run start"
+  
+  frontend:
+    <<: *api
+    container_name: frontend
+
+    networks:
+      - api-frontend
+
+    env_file: []
+    
+    depends_on:
+      - api
+    
+    volumes:
+      - ./frontend:/home/node/code
+    
+    ports:
+      - 8080:8080
+    
+    entrypoint: "npm run serve"
 
   shell:
     <<: *api
@@ -61,3 +82,4 @@ services:
 
 networks:
   api-db:
+  api-frontend:

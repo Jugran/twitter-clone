@@ -13,32 +13,35 @@ export const fetchFeed = () => {
       {
         id: 1,
         user: {
+          id: 1,
           name: 'John Doe',
           username: '@johndoe',
           avatar: 'cat',
         },
-        content: "This is a tweet",
-        timestamp: '21:00 2/12/2018',
+        text: "This is a tweet",
+        createdAt: '2018-02-12',
       },
       {
         id: 2,
         user: {
+          id: 2,
           name: 'Sarah James',
           username: '@sarahjames',
           avatar: 'rabbit',
         },
-        content: "This is another tweet",
-        timestamp: '21:00 21/3/2022'
+        text: "This is another tweet",
+        createdAt: '2021-01-12'
       },
       {
         id: 3,
         user: {
+          id: 3,
           name: 'Alex Smith',
           username: '@alexsmith',
           avatar: 'elephant',
         },
-        content: "This is an impressive tweet",
-        timestamp: '21:00 2/12/2022',
+        text: "This is an impressive tweet",
+        createdAt: '2022-02-12',
       }
     ]
   }

@@ -41,7 +41,7 @@
                 duration-150
               "
             >
-              {{username}} . {{timestamp}}
+              {{username}}. &nbsp;&nbsp; {{postTime}}
             </span>
           </p>
         </div>
@@ -51,8 +51,15 @@
 </template>
 
 <script>
+import moment from 'moment';
+ 
+
 export default {
     props: {
+        userid: {
+            type: Number,
+            required: true,
+        },
         user: {
             name: String,
             required: true
@@ -74,6 +81,11 @@ export default {
             required: false,
             default: false
         }
+    },
+    computed: {
+      postTime(){
+        return moment(this.timestamp).fromNow();
+      }
     }
 };
 </script>

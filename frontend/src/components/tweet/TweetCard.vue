@@ -19,12 +19,13 @@
       :avatar="tweet.user.avatar"
       :username="tweet.user.username"
       :verified="false"
-      :timestamp="tweet.timestamp"
+      :timestamp="tweet.createdAt"
+      :userid="tweet.user.id"
     />
 
     <div class="pl-16">
       <p class="pb-5 text-base width-auto font-medium dark:text-white flex-shrink">
-        {{tweet.content}}
+        {{tweet.text}}
       </p>
 
       <!-- <div class="flex my-3 mr-2 rounded-2xl border border-gray-600">

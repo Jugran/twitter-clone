@@ -94,12 +94,20 @@ export default {
         this.loading = true;
         console.log("submit", this.username, this.password);
 
-        await this.login({ username: this.username, password: this.password });
+        const loggedin = await this.login({ username: this.username, password: this.password });
+
+        if (loggedin) {
+          router.push({
+            name: "feed",
+          });
+        }
+        else {
+          alert("Invalid username or password");
+          this.username = "";
+          this.password = "";
+        }
 
         this.loading = false;
-        router.push({
-          name: "feed",
-        });
       }
     }
   }

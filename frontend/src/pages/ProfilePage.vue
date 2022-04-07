@@ -75,6 +75,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("profile/getProfile");
+    this.$store.dispatch("profile/fetchTweets");
   },
 };
 </script>

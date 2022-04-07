@@ -31,7 +31,7 @@
             <li class="inline-block mx-2">
               <a class="hover:underline" href="#">More</a>
             </li>
-            <li class="inline-block mx-2">© 2020 Twitter, Inc.</li>
+            <li class="inline-block mx-2">© 2022 Twitter, Inc.</li>
           </ul>
         </footer>
       </div>

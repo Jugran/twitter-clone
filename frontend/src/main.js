@@ -25,7 +25,6 @@ library.add(faHouse, faHashtag, faBars, faPen,
   faFaceSmile, faCalendar, faComment, faHeart, faTwitter
 )
 
-// Vue.prototype.$axios = axios
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
@@ -35,15 +34,16 @@ new Vue({
   router: Router,
   store: store,
   mounted() {
-    // if (
-    //   localStorage.getItem('color-theme') === 'dark' ||
-    //   (!('color-theme' in localStorage) &&
-    //     window.matchMedia('(prefers-color-scheme: dark)').matches)
-    // ) {
-    //   document.documentElement.classList.add('dark');
-    // } else {
-    //   document.documentElement.classList.remove('dark');
-    // }
+    if (
+      localStorage.getItem('color-theme') === 'dark' ||
+      (!('color-theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     document.documentElement.classList.add('dark');
   },
   destroyed() {

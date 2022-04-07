@@ -35,7 +35,9 @@ exports.getUserTweets = async (request, response) => {
             return response.status(400).send({ success: false, error: "No User ID" });
         }
 
-        const tweets = await Tweet.query().where('userID', id);
+        const tweets = await Tweet.query()
+            .withGraphFetched('user')
+            .where('userID', id);
 
         console.log('Retrieved tweets:', tweets.length);
         return response.status(200).send({ success: true, tweets });
@@ -80,9 +82,9 @@ exports.getTweetsFeed = async (request, response) => {
         users.push({ id });
 
         const tweets = await Tweet.query()
-        .withGraphFetched('user')
-        .whereIn('userID', users.map(user => user.id))
-        .orderBy('createdAt', 'desc');
+            .withGraphFetched('user')
+            .whereIn('userID', users.map(user => user.id))
+            .orderBy('createdAt', 'desc');
 
         console.log('Retrieved tweets:', tweets.length);
         return response.status(200).send({ success: true, tweets });

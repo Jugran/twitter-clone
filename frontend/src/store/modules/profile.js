@@ -1,3 +1,4 @@
+import Api from '@/Api'
 
 const getDefaultState = () => {
     return {
@@ -23,6 +24,9 @@ const mutations = {
         state.id = user.id;
         state.user = user.profile;
     },
+    setTweets(state, tweets) {
+        state.tweets = tweets;
+    },
     addTweet(state, tweet) {
         state.tweets.unshift(tweet);
     },
@@ -33,19 +37,48 @@ const mutations = {
 }
 
 const actions = {
-    getProfile({ state, commit }) {
-        const date = new Date()
-        const profile = {
-            name: state.user.name,
-            username: state.user.username,
-            avatar: state.user.avatar,
-            bio: state.user.bio || 'This is my bio. I am a developer',
-            followers: state.user.followers || 0,
-            following: state.user.following || 0,
-            joined: state.user.joined || date.toDateString()
-        }
+    async getProfile({ commit, rootState }, id) {
+        id = id ?? rootState.auth.user;
 
-        commit('setUser', { id: state.id, profile})
+        try {
+            const date = new Date();
+
+            if (!id) return;
+
+            const { data } = await Api(rootState.auth.token).get(`profile/${id}`);
+
+            const profile = {
+                name: data.user.name || data.user.username,
+                username: data.user.username,
+                avatar: data.user.avatar,
+                bio: data.user.bio || 'This is my bio. I am a developer',
+                followers: data.user.followers || 0,
+                following: data.user.following || 0,
+                joined: data.user.joined || date.toDateString()
+            }
+
+            commit('setUser', { id, profile });
+        }
+        catch (error) {
+            console.error("can't get profile", error.message);
+        }
+    },
+    async fetchTweets({ commit, rootState }, id) {
+        id = id ?? rootState.auth.user;
+
+        try {
+
+            if (!id) return;
+
+            const { data } = await Api(rootState.auth.token).get(`tweets/user/${id}`);
+
+            if (data.tweets.length > 0) {
+                commit('setTweets', data.tweets);
+            }
+        }
+        catch (error) {
+            console.error("can't fetch tweets", error.message);
+        }
     }
 }
 

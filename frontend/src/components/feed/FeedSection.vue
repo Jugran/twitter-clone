@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     userProfile() {
-      return this.$store.state.profile.user.avatar;
+      return this.$store.state.profile.user.avatar || 'blank';
     },
     tweets() {
       return this.$store.getters["feed/getFeed"];

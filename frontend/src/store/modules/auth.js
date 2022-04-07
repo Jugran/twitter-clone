@@ -1,6 +1,7 @@
 // vue auth store
-import { wait } from '@/helpers/wait'
 import router from '@/router';
+import Api from '@/Api'
+
 
 const getDefaultState = () => {
     return {
@@ -24,45 +25,32 @@ const mutations = {
 }
 
 const actions = {
-    async login({ commit }, { username, password }) {
+    async login({ commit, dispatch }, { username, password }) {
         try {
             console.log("🚀 login", username, password);
-            // const response = await this.$axios.post('/auth/login', {
-            //     username,
-            //     password,
-            // });
-            await wait(1000);
+            const { data } = await Api().post('auth/login', { username, password });
 
-
-            // commit('setUser', response.data);
-            commit('setUser', { user: username, token: password });
-            commit('profile/setUser', {
-                id: 1,
-                profile: {
-                    name: 'Peter Parker',
-                    username: '@' + username,
-                    avatar: 'panda',
-                },
-            }, { root: true });
-            // return response.data;
+            commit('setUser', data);
+            dispatch('profile/getProfile', data.id, { root: true });
+            return true;
         }
         catch (error) {
             console.error("can't login", error.message);
+            return false;
         }
     },
     async register(context, { username, password }) {
         try {
-            console.log("🚀 login", username, password);
-            await wait(1000);
+            console.log("🚀 signup", username, password);
 
-            // const response = await this.$axios.post('/auth/register', {
-            //     username,
-            //     password,
-            // });
-            // return response.data;
+            const { data } = await Api().post('auth/signup', { username, password });
+            
+            return data;
+            
         }
         catch (error) {
             console.error("can't register", error.message);
+            return error.response.data;
         }
     },
     logout({ commit }) {

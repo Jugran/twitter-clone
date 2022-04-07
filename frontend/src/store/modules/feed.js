@@ -1,3 +1,4 @@
+import Api from '@/Api'
 import { fetchFeed } from '@/services/feedService'
 import { wait } from '@/helpers/wait'
 
@@ -26,13 +27,17 @@ const mutations = {
 }
 
 const actions = {
-    async fetchFeed({ commit, state }) {
+    async fetchFeed({ commit, rootState }) {
         try {
-            // const response = await this.$axios.get('/tweets');
-            if (state.tweets.length === 0) {
+            const { data } = await Api(rootState.auth.token).get(`tweets/feed`);
+
+            if (data.tweets.length === 0) {
                 const response = fetchFeed();
-                await wait(2000);
+                await wait(1000);
                 commit('setTweets', response.data);
+            }
+            else {
+                commit('setTweets', data.tweets);
             }
         }
         catch (error) {
@@ -50,31 +55,37 @@ const actions = {
             console.error("can't fetch tweets", error.message);
         }
     },
-    async addTweet({ commit, rootGetters }, text) {
+    async addTweet({ commit, rootGetters, rootState }, text) {
         try {
-            // const response = await this.$axios.post('/tweets', { text });
 
             const date = new Date();
             const timestamp = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + " " + date.toDateString();
             const { user, id } = rootGetters['profile/getProfile'];
 
-            const tweet = {
-                id: null,
-                user: {
-                    id,
-                    ...user
-                },
-                content: text,
-                timestamp: timestamp,
-            }
-            tweet.id = (Math.random() * 10000).toFixed(0);
-            await wait(1000);
+            const { data } = await Api(rootState.auth.token).post("tweets/new", { text });
 
-            commit('profile/addTweet', tweet, { root: true });
-            commit('addTweet', tweet);
+            if (data.success) {
+
+                const tweet = {
+                    id: data.tweet_id,
+                    user: {
+                        id,
+                        ...user
+                    },
+                    text,
+                    createdAt: timestamp,
+                }
+
+                commit('addTweet', tweet);
+
+                return true
+            }
+
+            return false;
         }
         catch (error) {
             console.error("can't add tweet", error.message);
+            return false;
         }
     }
 
