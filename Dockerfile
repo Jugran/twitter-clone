@@ -1,6 +1,6 @@
 FROM node:lts-bullseye-slim
 
-RUN npm install -g pm2
+RUN npm install -g pm2 @vue/cli @vue/cli-service
 
 USER node
 

@@ -48,7 +48,7 @@ services:
     ports:
       - 8080:8080
     
-    entrypoint: "npm run serve"
+    entrypoint: bash -c "npm install && npm run serve"
 
   shell:
     <<: *api
@@ -70,9 +70,6 @@ services:
 
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
-    volumes:
-      - ./data:/var/lib/postgresql/data 
 
     networks:
       - api-db
